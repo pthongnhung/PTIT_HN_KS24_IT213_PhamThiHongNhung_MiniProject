@@ -50,7 +50,4 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.register('inspectSearchRequest', JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass = 're.com.InspectSearchRequest'
-}
+

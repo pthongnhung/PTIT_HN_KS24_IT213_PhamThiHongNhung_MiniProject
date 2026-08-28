@@ -47,19 +47,18 @@ public class AIChatService {
         log.info("Processing chat request with message: '{}'", message);
 
         List<Document> similarDocs = new ArrayList<>();
-        // Temporary commented out for reflection inspection
-        /*
         try {
             similarDocs = vectorStore.similaritySearch(
-                    new SearchRequest(message)
-                            .withSimilarityThreshold(0.2)
-                            .withTopK(3)
+                    SearchRequest.builder()
+                            .query(message)
+                            .similarityThreshold(0.2)
+                            .topK(3)
+                            .build()
             );
             log.info("Similarity search returned {} documents for sources", similarDocs.size());
         } catch (Exception e) {
             log.warn("Similarity search failed (possibly no documents ingested yet): {}", e.getMessage());
         }
-        */
 
         List<SourceDto> sources = similarDocs.stream()
                 .map(doc -> {
